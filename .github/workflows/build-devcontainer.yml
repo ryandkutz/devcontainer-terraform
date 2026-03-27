@@ -1,7 +1,6 @@
 name: Build and Push Dev Container Image
 
 on:
-  push:
   workflow_dispatch:
 
 env:
