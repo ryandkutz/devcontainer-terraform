@@ -1,6 +1,8 @@
 {
 	"name": "Terraform",
-	"image": "mcr.microsoft.com/devcontainers/base:debian",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"features": {
 		"ghcr.io/devcontainers/features/terraform:1": {
 			"version": "latest",
@@ -16,14 +18,14 @@
 		},
 		"ghcr.io/devcontainers-extra/features/terraform-docs:1": {}
 	},
-	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y graphviz make ansible curl tmux screen zip && sudo apt-get clean",
 	"runArgs": ["--env-file", ".devcontainer/devcontainer.env"],
 	"remoteEnv": {
 		"TF_BACKEND_RESOURCE_GROUP": "${containerEnv:TF_BACKEND_RESOURCE_GROUP}",
 		"TF_BACKEND_LOCATION": "${containerEnv:TF_BACKEND_LOCATION}",
 		"TF_BACKEND_STORAGE_ACCOUNT": "${containerEnv:TF_BACKEND_STORAGE_ACCOUNT}",
 		"TF_BACKEND_CONTAINER": "${containerEnv:TF_BACKEND_CONTAINER}",
-		"TF_BACKEND_KEY": "${containerEnv:TF_BACKEND_KEY}"
+		"TF_BACKEND_KEY": "${containerEnv:TF_BACKEND_KEY}",
+		"ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
 	},
 	"customizations": {
 		"vscode": {
@@ -39,7 +41,8 @@
 				"redhat.ansible",
 				"eamodio.gitlens",
 				"pkief.material-icon-theme",
-				"bridgecrewio.checkov"
+				"bridgecrewio.checkov",
+				"anthropics.claude-code"
 			]
 		}
 	},
